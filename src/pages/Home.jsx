@@ -10,7 +10,11 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <h1 className={styles.home__title}>snake game</h1>
-      {value.start === true && <Board />}
+      {value.start === true && (
+        <>
+          <Board />
+        </>
+      )}
       {value.start === false && value.rules === false && <Wait />}
       {value.start === false && value.rules === true && <Rules />}
     </div>
