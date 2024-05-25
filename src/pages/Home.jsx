@@ -6,6 +6,7 @@ import Wait from "../components/home/wait/Wait";
 import Rules from "../components/home/rules/Rules";
 import Pause from "../components/home/pause/Pause";
 import MakePause from "../components/home/pause/makePause";
+import AutoMove from "../components/home/autoMove/AutoMove";
 
 const Home = () => {
   const { value } = useContext(GameContext);
@@ -16,6 +17,7 @@ const Home = () => {
         <>
           <Board />
           <MakePause />
+          <AutoMove />
         </>
       )}
 

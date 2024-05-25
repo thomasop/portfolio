@@ -6,7 +6,7 @@ const Board = () => {
   const { value } = useContext(GameContext);
   return (
     <div>
-      {Array.from({ length: 15 }).map((_, y) => (
+      {Array.from({ length: 20 }).map((_, y) => (
         <div key={y} className={styles.row}>
           {Array.from({ length: 20 }).map((_, x) => (
             <div
