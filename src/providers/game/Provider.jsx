@@ -14,6 +14,8 @@ const InitialValue = {
   link: null,
   linkTest: null,
   score: 0,
+  speed: 500,
+  rules: false,
 };
 
 const Provider = ({ children }) => {
