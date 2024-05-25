@@ -5,7 +5,7 @@ import GameContext from "../providers/game/Context";
 import Wait from "../components/home/wait/Wait";
 import Rules from "../components/home/rules/Rules";
 import Pause from "../components/home/pause/Pause";
-import MakePause from "../components/home/pause/makePause";
+import MakePause from "../components/home/pause/MakePause";
 import AutoMove from "../components/home/autoMove/AutoMove";
 import ChangeDirection from "../components/home/changeDirection/ChangeDirection";
 

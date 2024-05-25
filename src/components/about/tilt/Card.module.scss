@@ -1,0 +1,42 @@
+.tilt {
+  transform-style: preserve-3d;
+  &__card {
+    padding: 10px;
+    border-radius: 10px;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    transform-style: preserve-3d;
+    &__img {
+      object-fit: contain;
+      align-self: center;
+      width: 90%;
+      height: 90%;
+      transform: translateZ(60px);
+    }
+    &__light {
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5),
+        -2px -2px 2px rgba(0, 0, 0, 0.5), inset 2px 2px 2px rgba(0, 0, 0, 0.5),
+        inset -2px -2px 2px rgba(0, 0, 0, 0.5), 0 0 0 5px rgba(0, 0, 0, 0.5),
+        0 0 0 2px rgba(0, 0, 0, 0.5);
+
+      &:hover {
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5),
+          -10px -10px 10px rgba(0, 0, 0, 0.5),
+          inset 10px 10px 10px rgba(0, 0, 0, 0.5),
+          inset -10px -10px 10px rgba(0, 0, 0, 0.5),
+          0 0 0 5px rgba(0, 0, 0, 0.5), 0 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .tilt {
+    align-self: center;
+    &__card {
+      margin-bottom: 30px;
+    }
+  }
+}
