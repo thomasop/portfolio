@@ -9,6 +9,7 @@ const InitialValue = {
     { x: 2, y: 5 },
   ],
   start: false,
+  pause: false,
   direction: "right",
   food: null,
   link: null,
