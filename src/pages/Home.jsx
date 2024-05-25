@@ -7,6 +7,7 @@ import Rules from "../components/home/rules/Rules";
 import Pause from "../components/home/pause/Pause";
 import MakePause from "../components/home/pause/makePause";
 import AutoMove from "../components/home/autoMove/AutoMove";
+import ChangeDirection from "../components/home/changeDirection/ChangeDirection";
 
 const Home = () => {
   const { value } = useContext(GameContext);
@@ -18,6 +19,7 @@ const Home = () => {
           <Board />
           <MakePause />
           <AutoMove />
+          <ChangeDirection />
         </>
       )}
 
