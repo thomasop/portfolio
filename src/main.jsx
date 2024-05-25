@@ -5,11 +5,16 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
+import Provider from "./providers/game/Provider";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: (
+      <Provider>
+        <Home />
+      </Provider>
+    ),
   },
   {
     path: "/about",

@@ -1,5 +1,4 @@
-import React from "react";
-import Board from "../components/home/Board";
+import Board from "../components/home/board/Board";
 import styles from "./Home.module.scss";
 
 const Home = () => {
