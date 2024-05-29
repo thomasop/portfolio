@@ -6,6 +6,8 @@ import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import Provider from "./providers/game/Provider";
+import Doodle from "./pages/Doodle";
+import Tetris from "./pages/Tetris";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,14 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <Contact />,
+  },
+  {
+    path: "/doodle",
+    element: <Doodle />,
+  },
+  {
+    path: "/tetris",
+    element: <Tetris />,
   },
 ]);
 
