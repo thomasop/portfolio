@@ -202,12 +202,6 @@ const Projects = () => {
     window.addEventListener("wheel", handlerScroll);
     return () => window.removeEventListener("wheel", handlerScroll);
   }, [spacingX, spacingY, speedX, speedY]);
-  console.log("refEl", refEl.current && refEl.current.offsetWidth);
-  console.log(
-    "document.documentElement.clientWidth",
-    document.documentElement.clientWidth
-  );
-  console.log("x + spacingX * index", x);
   return (
     <>
       <section className={styles.projects}>

@@ -8,6 +8,7 @@ import Card from "../../about/tilt/Card";
 import flappyContext from "../../../providers/flappy/flappyContext";
 
 const Rules = () => {
+  console.log("Rules");
   const { theme } = useContext(themeContext);
   const { value, setValue } = useContext(flappyContext);
   return (

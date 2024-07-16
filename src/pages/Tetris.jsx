@@ -31,7 +31,6 @@ const allTetris = [{ pos: ITetris, status: true }];
 
 const Tetris = () => {
   const [rotation, setRotation] = useState(0);
-  console.log(rotation);
   const [currentTetris, setCurrentTetris] = useState(
     allTetris[Math.floor(Math.random())].pos[0]
   );

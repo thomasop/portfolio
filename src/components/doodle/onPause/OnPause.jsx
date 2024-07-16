@@ -92,7 +92,6 @@ const OnPause = () => {
           event.offsetX > 120 &&
           event.offsetX < 220
         ) {
-          console.log("clicked");
           setValue((prev) => ({
             ...prev,
             pause: false,

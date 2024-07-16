@@ -2,14 +2,14 @@ import React, { Suspense, useContext, useEffect } from "react";
 import flappyContext from "../../providers/flappy/flappyContext";
 
 import styles from "./FlappyBird.module.scss";
-/* import Rules from "../../components/flappy/rules/Rules";
+import Rules from "../../components/flappy/rules/Rules";
 import About from "../../components/flappy/about/About";
 import Contact from "../../components/contact/Contact";
-import Projects from "../../components/flappy/projects/Projects"; */
+import Projects from "../../components/flappy/projects/Projects";
 import OnTheMenu from "../../components/flappy/game/onTheMenu/OnTheMenu";
-/* import OnPlay from "../../components/flappy/game/onPlay/OnPlay";
+import OnPlay from "../../components/flappy/game/onPlay/OnPlay";
 import OnGameOver from "../../components/flappy/game/onGameOver/OnGameOver";
-import OnPause from "../../components/flappy/game/onPause/OnPause"; */
+import OnPause from "../../components/flappy/game/onPause/OnPause";
 import themeContext from "../../providers/theme/themeContext";
 import deviceContext from "../../providers/device/deviceContext";
 import projectsContext from "../../providers/projects/projectsContext";
@@ -55,11 +55,14 @@ const FlappyBird = () => {
       }));
     }
   }, [setDevice]); */
+  console.log(value.page);
+  console.log(device.device);
   return (
     <>
-      <Theme />
+      <Suspense fallback={<p>load</p>}>
+        <Theme />
+      </Suspense>
       <Device />
-      {/* <div className={styles.container}> */}
       <>
         <main
           className={`${styles.container} ${
@@ -72,25 +75,19 @@ const FlappyBird = () => {
         >
           {value.page === "game" && (
             <>
-              {value.start === false && (
-                <>
-                  <Suspense fallback={<p>load</p>}>
-                    <OnTheMenu />
-                  </Suspense>
-                </>
-              )}
-              {/* {value.start === true &&
+              {value.start === false && <OnTheMenu />}
+              {value.start === true &&
                 value.gameOver === false &&
                 value.pause === false && <OnPlay />}
               {value.start === true &&
                 value.gameOver === false &&
                 value.pause === true && <OnPause />}
               {value.gameOver === true && <OnGameOver />}
-              {value.rules === true && <Rules />} */}
+              {value.rules === true && <Rules />}
             </>
           )}
 
-          {/* {value.page === "rules" && device.device === "desktop" && <Rules />}
+          {value.page === "rules" && device.device === "desktop" && <Rules />}
           {value.page === "about" && device.device === "desktop" && <About />}
           {value.page === "projects" && (
             <>
@@ -120,7 +117,7 @@ const FlappyBird = () => {
           {value.page !== "projects" &&
             value.page !== "game" &&
             value.page !== "rules" &&
-            value.page !== "about" && <Project />} */}
+            value.page !== "about" && <Project />}
         </main>
       </>
       {/* {device.device === "mobile" && (

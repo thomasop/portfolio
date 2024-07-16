@@ -8,7 +8,6 @@ import AnimateDoodle from "./components/AnimateDoodle";
 
 const IsStarted = ({ setPause }) => {
   const { value, setValue } = useContext(doodleContext);
-  console.log(value.allPlateform);
   const canvasRef = useRef(null);
   //console.log(value);
   /* const [doodlePos, setDoodlePos] = useState({ x: 160, y: 600 });

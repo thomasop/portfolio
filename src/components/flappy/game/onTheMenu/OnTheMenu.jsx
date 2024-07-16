@@ -48,7 +48,6 @@ const OnTheMenu = () => {
 
     preloadImages();
   }, []);
-  console.log(images);
   /* useEffect(() => {
     const preloadBirdImage = async () => {
       if (value.birdImg && !images.current[value.birdImg]) {

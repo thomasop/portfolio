@@ -13,7 +13,6 @@ const AnimateDoodle = () => {
 
     const animate = () => {
       if (value.doodlePos.y >= 630) {
-        console.log("test");
         setValue((prev) => ({
           ...prev,
           lost: true,
@@ -38,17 +37,16 @@ const AnimateDoodle = () => {
 
       if (value.allPlateform.length === 1 && value.allPlateform[0].length > 0) {
         for (let i = 0; i < value.allPlateform[0].length; i++) {
-          if (value.doodlePos.x > value.allPlateform[0][i].x - 15 &&
+          if (
+            value.doodlePos.x > value.allPlateform[0][i].x - 15 &&
             value.doodlePos.x < value.allPlateform[0][i].x + 30 &&
             value.doodlePos.y + 20 <= value.allPlateform[0][i].y &&
             value.doodlePos.y + 20 >= value.allPlateform[0][i].y - 10
           ) {
-            if (value.allPlateform[0][i].type === "linkAbout") {
-              console.log("test");
+            /* if (value.allPlateform[0][i].type === "linkAbout") {
             }
             if (value.allPlateform[0][i].type === "linkProject") {
-              console.log("test2");
-            }
+            } */
             //navigate("/about")
             /* setOk3(
               (value.allPlateform[0][0].y - value.allPlateform[0][i].y) / 10
@@ -76,7 +74,10 @@ const AnimateDoodle = () => {
               }));
             } */
           }
-          if (value.allPlateform[0][i].type === "plat" && value.direction === "down") {
+          if (
+            value.allPlateform[0][i].type === "plat" &&
+            value.direction === "down"
+          ) {
             if (
               value.doodlePos.x > value.allPlateform[0][i].x - 25 &&
               value.doodlePos.x < value.allPlateform[0][i].x + 25 &&
@@ -111,12 +112,17 @@ const AnimateDoodle = () => {
               }
             }
           }
-          if ((value.allPlateform[0][i].type === "linkAbout" || value.allPlateform[0][i].type === "linkProject") && value.direction === "down") {
+          if (
+            (value.allPlateform[0][i].type === "linkAbout" ||
+              value.allPlateform[0][i].type === "linkProject") &&
+            value.direction === "down"
+          ) {
             if (
               value.doodlePos.x > value.allPlateform[0][i].x - 25 &&
-            value.doodlePos.x < value.allPlateform[0][i].x + 50 &&
-            value.doodlePos.y + 20 <= value.allPlateform[0][i].y &&
-            value.doodlePos.y + 20 >= value.allPlateform[0][i].y - 10 && value.direction === "down"
+              value.doodlePos.x < value.allPlateform[0][i].x + 50 &&
+              value.doodlePos.y + 20 <= value.allPlateform[0][i].y &&
+              value.doodlePos.y + 20 >= value.allPlateform[0][i].y - 10 &&
+              value.direction === "down"
             ) {
               setOk3(
                 (value.allPlateform[0][0].y - value.allPlateform[0][i].y) / 10
@@ -177,7 +183,7 @@ const AnimateDoodle = () => {
                 currentH: value.allPlateform[0][i].y - 70,
               }));
             } */
-            /* 
+          /* 
                 setCurrentId(i);
                 setDiff(allPlateform[0][0].y - allPlateform[0][i].y - 10);
                 setScore(
@@ -250,7 +256,7 @@ const AnimateDoodle = () => {
         }));
         //setDoodlePos({ x: doodlePos.x + dx, y: doodlePos.y + dy });
 
-       // timerId = requestAnimationFrame(animate);
+        // timerId = requestAnimationFrame(animate);
       }
     };
     timerId = requestAnimationFrame(animate);

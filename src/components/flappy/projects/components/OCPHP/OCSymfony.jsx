@@ -126,7 +126,6 @@ const OCSymfony = () => {
   useEffect(() => {
     if (value.stopAnimation) {
       window.setTimeout(() => {
-        console.log("test");
         setValue((prev) => ({
           ...prev,
           stopAnimation: false,

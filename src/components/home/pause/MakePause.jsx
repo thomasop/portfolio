@@ -8,7 +8,6 @@ const MakePause = () => {
       if (e.key === "Escape") {
         setValue({ ...value, pause: true });
       }
-      console.log(e);
     };
     window.addEventListener("keydown", press);
     return () => removeEventListener("keydown", press);

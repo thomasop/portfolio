@@ -59,7 +59,6 @@ export const drawPipe = async (ctx, x, y, image) => {
 export const drawElement = async (ctx, img, x, y, width, height) => {
   const drawImage = async () => {
     const over = await loadImage("./assets/flappy/" + img + ".png");
-    console.log(over);
     ctx.drawImage(over, x, y, width, height);
   };
   await drawImage();

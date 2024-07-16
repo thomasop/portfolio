@@ -91,7 +91,6 @@ const OnPlay = () => {
           .split("")
           .reverse()
           .map(async (Number, index) => {
-            console.log("Number", Number);
             await drawElement(ctx, Number, start + index * 30, 20, 25, 25);
           });
       } else {
