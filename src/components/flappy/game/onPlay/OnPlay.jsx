@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef, useContext, useState } from "react";
 import flappyContext from "../../../../providers/flappy/flappyContext";
 import styles from "./OnPlay.module.scss";
 import themeContext from "../../../../providers/theme/themeContext";
@@ -6,10 +6,171 @@ import Contact from "../../../contact/Contact";
 import Theme from "../../../theme/Theme";
 import { drawElement } from "../components/draw/function";
 
+const loadImage = (src) => {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => resolve(img);
+  });
+};
+
 const OnPlay = () => {
   const { value, setValue } = useContext(flappyContext);
   const canvasRef = useRef(null);
+  const images = useRef({});
   const { theme } = useContext(themeContext);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
+
+  useEffect(() => {
+    const preloadImages = async () => {
+      const imageNames = [
+        "sky",
+        "night",
+        "land",
+        "getready",
+        "taptap",
+        "PipeUp",
+        "PipeDown",
+        "pause",
+        "play",
+        "mob1",
+        "bird-1-2",
+        "bird-1-3",
+        "bird-1",
+        "0",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+      ];
+      const loadPromises = imageNames.map((name) =>
+        loadImage(`./assets/flappy/${name}.png`).then((img) => {
+          images.current[name] = img;
+        })
+      );
+      await Promise.all(loadPromises);
+      setImagesLoaded(true);
+    };
+
+    preloadImages();
+  }, []);
+
+  useEffect(() => {
+    const draw = (ctx) => {
+      const backgroundImage =
+        theme === "light" ? images.current.sky : images.current.night;
+
+      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
+
+      if (backgroundImage) {
+        ctx.drawImage(backgroundImage, 0, 0, 320, 400);
+      }
+      if (value.userTapOnScreen === false) {
+        if (images.current.getready) {
+          ctx.drawImage(images.current.getready, 70, 80, 180, 60);
+        }
+        if (images.current.taptap) {
+          ctx.drawImage(images.current.taptap, 120, 200, 120, 120);
+        }
+      } else {
+        for (let i = 0; i < value.pipe.length; i++) {
+          Object.entries(value.pipe[i]).map(([key, val]) => {
+            if (key === "0") {
+              if (images.current.PipeUp) {
+                ctx.drawImage(images.current.PipeUp, val.x, val.y, 40, 400);
+              }
+            } else {
+              if (images.current.PipeDown) {
+                ctx.drawImage(images.current.PipeDown, val.x, val.y, 40, 400);
+              }
+            }
+          });
+        }
+      }
+      const pause =
+        value.pause === false ? images.current.pause : images.current.play;
+      if (pause) {
+        ctx.drawImage(pause, 265, 20, 35, 35);
+      }
+      if (images.current.mob1) {
+        ctx.drawImage(
+          images.current.mob1,
+          value.posXMob,
+          value.posYMob,
+          40,
+          40
+        );
+      }
+      if (images.current.land) {
+        ctx.drawImage(images.current.land, value.posXLand, 400, 500, 100);
+      }
+      if (images.current[value.birdImg]) {
+        ctx.drawImage(
+          images.current[value.birdImg],
+          140,
+          value.posYBird,
+          35,
+          30
+        );
+      }
+      if (value.score > 9) {
+        let start = 20;
+        let strScore = value.score
+          .toString()
+          .split("")
+          .reverse()
+          .map((Number, index) => {
+            if (images.current[Number]) {
+              ctx.drawImage(
+                images.current[Number],
+                start + index * 30,
+                20,
+                25,
+                25
+              );
+            }
+          });
+      } else {
+        if (images.current[value.score]) {
+          ctx.drawImage(images.current[value.score], 20, 20, 25, 25);
+        }
+      }
+      /* if (images.current.start) {
+        ctx.drawImage(images.current.start, 40, 340, 100, 40);
+      }
+      if (images.current.flappy) {
+        ctx.drawImage(images.current.flappy, 60, 80, 200, 60);
+      }
+      if (images.current.rules) {
+        ctx.drawImage(images.current.rules, 180, 340, 100, 40);
+      } */
+    };
+    if (imagesLoaded) {
+      const ctx = canvasRef.current.getContext("2d");
+      canvasRef.current.height = 500;
+      canvasRef.current.width = 320;
+      draw(ctx);
+    }
+  }, [
+    imagesLoaded,
+    theme,
+    value.birdImg,
+    value.pause,
+    value.pipe,
+    value.posXLand,
+    value.posXMob,
+    value.posYBird,
+    value.posYMob,
+    value.score,
+    value.userTapOnScreen,
+  ]);
+
   useEffect(() => {
     const drawImage = async () => {
       await drawElement(
@@ -97,12 +258,13 @@ const OnPlay = () => {
         await drawElement(ctx, value.score, 20, 20, 25, 25);
       }
     };
-    const ctx = canvasRef.current.getContext("2d");
+    let ctx;
+    /* const ctx = canvasRef.current.getContext("2d");
     canvasRef.current.height = 500;
     canvasRef.current.width = 320;
-    ctx.clearRect(0, 0, 320, 500);
+    ctx.clearRect(0, 0, 320, 500); */
 
-    drawImage();
+    //drawImage();
 
     if (canvasRef.current) {
       const handlerClick = (event) => {
@@ -132,7 +294,20 @@ const OnPlay = () => {
       };
       canvasRef.current.addEventListener("click", handlerClick);
     }
-  }, [value.posYBird, value.posXBird, theme, value.birdImg]);
+  }, [
+    value.posYBird,
+    value.posXBird,
+    theme,
+    value.birdImg,
+    value.userTapOnScreen,
+    value.pause,
+    value.posXMob,
+    value.posYMob,
+    value.posXLand,
+    value.score,
+    value.pipe,
+    setValue,
+  ]);
   useEffect(() => {
     let id;
     const animate = () => {
@@ -493,7 +668,21 @@ const OnPlay = () => {
     return () => {
       window.cancelAnimationFrame(id);
     };
-  }, [value.posYBird, value.posXLand]);
+  }, [
+    value.posYBird,
+    value.posXLand,
+    value.userTapOnScreen,
+    value.animateBeforeGameOver,
+    value.start,
+    value.gameOver,
+    value.pipe,
+    value.currentPipe,
+    value.posYMob,
+    value.birdFlyRatio,
+    value.posXBird,
+    value.posXMob,
+    setValue,
+  ]);
   useEffect(() => {
     const event = (event) => {
       if (event.key === " ") {
