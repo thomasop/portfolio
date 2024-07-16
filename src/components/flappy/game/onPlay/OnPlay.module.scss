@@ -1,0 +1,23 @@
+.onPlay {
+  width: 100%;
+  height: 100%;
+  &__dark {
+    background: #171933;
+  }
+  &__light {
+    background: #e8e9f8;
+  }
+  &__canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.canvas {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+}

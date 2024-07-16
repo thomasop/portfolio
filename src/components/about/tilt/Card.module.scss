@@ -1,5 +1,7 @@
 .tilt {
   transform-style: preserve-3d;
+  background: white;
+  border-radius: 10px;
   &__card {
     padding: 10px;
     border-radius: 10px;
@@ -32,11 +34,8 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1000px) {
   .tilt {
-    align-self: center;
-    &__card {
-      margin-bottom: 30px;
-    }
+    margin-bottom: 30px;
   }
 }

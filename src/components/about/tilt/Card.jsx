@@ -1,4 +1,3 @@
-import React from "react";
 import Tilt from "react-parallax-tilt";
 import styles from "./Card.module.scss";
 import PropTypes from "prop-types";

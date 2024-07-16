@@ -1,0 +1,87 @@
+.container {
+  //height: 100%;
+  width: 100%;
+
+  position: relative;
+  &__fullHeight {
+    height: 100%;
+    min-height: 550px;
+  }
+  &__height {
+    min-height: 100%;
+  }
+  &__dark {
+    background: #171933;
+  }
+  &__light {
+    background: #e8e9f8;
+  }
+  &__game {
+    padding-left: 50px;
+  }
+
+  &__canvas {
+    position: relative;
+    z-index: 999;
+    width: 400px;
+    height: 500px;
+  }
+  &__test {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    &___dark {
+      background-color: #171933;
+    }
+    &__light {
+      background-color: #e8e9f8;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .container {
+    &__fullHeight {
+      height: 100%;
+      min-height: 550px;
+    }
+    &__height {
+      min-height: 100%;
+    }
+    &__game {
+      &__dark {
+        height: 100%;
+        width: 100%;
+        padding-left: 0px;
+      }
+      &__light {
+        height: 100%;
+        width: 100%;
+        padding-left: 0px;
+      }
+    }
+  }
+}
+@media screen and (max-width: 320px) {
+  .container {
+    width: 100%;
+
+    position: relative;
+    &__fullHeight {
+      height: 100%;
+      min-height: 550px;
+    }
+    &__height {
+      min-height: 100%;
+    }
+    &__game {
+      &__dark {
+        padding-left: 0px;
+      }
+      &__light {
+        padding-left: 0px;
+      }
+    }
+  }
+}

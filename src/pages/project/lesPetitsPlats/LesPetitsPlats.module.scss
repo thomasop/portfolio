@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "MyFont";
+  src: local("MyFont"),
+    url(../../../font/Parisienne-Regular.ttf) format("truetype");
+}
+
+.project {
+  &__h1 {
+    margin-left: 10%;
+    margin-top: 50px;
+    font-family: MyFont, Times, serif;
+    font-size: 38px;
+  }
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 10% 50px 10%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .project {
+    &__h1 {
+      margin-left: 5%;
+      margin-top: 50px;
+    }
+    &__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 50px 5% 50px 5%;
+    }
+  }
+}
