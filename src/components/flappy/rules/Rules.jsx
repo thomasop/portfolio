@@ -16,7 +16,7 @@ const Rules = () => {
       <section
         className={`${styles.rules} ${
           theme === "dark" ? styles.rules__dark : styles.rules__light
-        }`}
+        } ${value.rules ? styles.rules__show : styles.rules__hide}`}
       >
         <img
           onClick={() => {

@@ -3,27 +3,31 @@ import Model from "./Model";
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-const Scene = ({ img, x, domX }) => {
+const Scene = ({ index, img, x, domX, p }) => {
   const [rotate, setRotate] = useState(0);
   useEffect(() => {
-    if (domX === x + 200) {
+    /* if (domX === x + 400) {
       setRotate(0);
-    } else {
-      let ratio = (x - domX) / 10;
-      if (ratio > 90 || ratio < -90) {
-        if (ratio > 90) {
-          setRotate(90);
-        } else {
-          setRotate(-90);
-        }
+    } else { */
+    let ratio = (x - domX) / 5;
+
+    if (ratio > 90 || ratio < -90) {
+      if (ratio > 90) {
+        setRotate(90);
       } else {
-        setRotate(ratio);
+        setRotate(-90);
       }
+    } else {
+      setRotate(ratio);
     }
-  }, [rotate, domX, x]);
+    //}
+  }, [rotate, domX, x, index]);
+  if (index === 0) {
+    //console.log("rotate", rotate);
+  }
   return (
-    <Canvas frameloop={"demand"}>
-      <Model img={img} x={x} rotate={rotate} />
+    <Canvas frameloop={"always"}>
+      <Model img={img} x={x} rotate={rotate} p={p} />
     </Canvas>
   );
 };

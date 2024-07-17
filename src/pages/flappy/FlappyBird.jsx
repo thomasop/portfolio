@@ -1,5 +1,6 @@
 import React, { Suspense, useContext, useEffect } from "react";
 import flappyContext from "../../providers/flappy/flappyContext";
+import "../../test.css";
 
 import styles from "./FlappyBird.module.scss";
 import Rules from "../../components/flappy/rules/Rules";
@@ -55,14 +56,12 @@ const FlappyBird = () => {
       }));
     }
   }, [setDevice]); */
-  console.log(value.page);
-  console.log(device.device);
   return (
     <>
-      <Suspense fallback={<p>load</p>}>
+      {/* <Suspense fallback={<p>load</p>}>
         <Theme />
       </Suspense>
-      <Device />
+      <Device /> */}
       <>
         <main
           className={`${styles.container} ${
@@ -83,7 +82,7 @@ const FlappyBird = () => {
                 value.gameOver === false &&
                 value.pause === true && <OnPause />}
               {value.gameOver === true && <OnGameOver />}
-              {value.rules === true && <Rules />}
+              <Rules />
             </>
           )}
 

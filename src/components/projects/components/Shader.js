@@ -46,10 +46,18 @@ void main() {
 
 export const fragment = `
 uniform sampler2D uTexture;
+uniform float uOpacity;
 varying vec2 vUv;
 void main() {
-    vec2 uv = vUv;
-    vec4 color = texture2D(uTexture, uv);
-    gl_FragColor = color;  
+    vec4 backgroundColor = vec4(0.0, 0.0, 0.0, 1.0); // Couleur noire
+
+    // Obtenez la couleur de la texture
+    vec4 textureColor = texture2D(uTexture, vUv);
+    
+    // Appliquez l'opacité
+    textureColor.a *= uOpacity;
+
+    // Mélangez le fond noir et la texture
+    gl_FragColor = mix(backgroundColor, textureColor, textureColor.a);
 }
 `;

@@ -1,0 +1,16 @@
+.card {
+  position: absolute;
+  z-index: 999;
+  pointer-events: auto;
+  transform-origin: center;
+  &__div {
+    cursor: pointer;
+    width: 540px;
+    height: 360px;
+    z-index: 999;
+    &:hover {
+      opacity: 0.8;
+      background-color: black;
+    }
+  }
+}

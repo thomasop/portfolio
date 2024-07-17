@@ -11,6 +11,7 @@ const initialState = {
   spacingX: 0,
   spacingY: 0,
   percent: 0,
+  current: 0,
 };
 
 const ProjectsProvider = ({ children }) => {

@@ -1,10 +1,69 @@
-import React, { useContext } from "react";
-import styles from "./Carousel.module.scss";
+import React from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import Fade from "embla-carousel-fade";
 import PropTypes from "prop-types";
-import themeContext from "../../providers/theme/themeContext";
+import "./embla.css";
+/* import {
+  NextButton,
+  PrevButton,
+  usePrevNextButtons,
+} from "./EmblaCarouselArrowButtons"; */
+import { useDotButton } from "./EmblaCarouselDotButton";
+import { DotButton } from "./DotButton";
 
-const Carousel = ({ arrayImg }) => {
-  const [index, setIndex] = React.useState(0);
+const Carousel = (props) => {
+  const { slides, options } = props;
+  const [emblaRef, emblaApi] = useEmblaCarousel(options, [Fade()]);
+
+  const { selectedIndex, scrollSnaps, onDotButtonClick } =
+    useDotButton(emblaApi);
+
+  /*  const {
+    prevBtnDisabled,
+    nextBtnDisabled,
+    onPrevButtonClick,
+    onNextButtonClick,
+  } = usePrevNextButtons(emblaApi); */
+  console.log(scrollSnaps);
+  return (
+    <div className="embla">
+      <div className="embla__viewport" ref={emblaRef}>
+        <div className="embla__container">
+          {slides.map((value, index) => (
+            <div className="embla__slide" key={index}>
+              <img
+                className="embla__slide__img"
+                //style={{ width: "600px", height: "400px", objectFit: "cover" }}
+                src={`${value}`}
+                alt="Your alt text"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="embla__controls">
+        {/*<div className="embla__buttons">
+          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
+        </div>*/}
+
+        <div className="embla__dots">
+          {scrollSnaps.map((value, index) => (
+            <DotButton
+              key={index}
+              index={index}
+              onClick={() => onDotButtonClick(index)}
+              className={"embla__dot".concat(
+                index === selectedIndex ? " embla__dot--selected" : ""
+              )}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+  /* const [index, setIndex] = React.useState(0);
   const { theme } = useContext(themeContext);
   return (
     <>
@@ -47,11 +106,12 @@ const Carousel = ({ arrayImg }) => {
         }`}</p>
       </div>
     </>
-  );
+  ); */
 };
 
 export default Carousel;
 
 Carousel.propTypes = {
-  arrayImg: PropTypes.array.isRequired,
+  slides: PropTypes.array.isRequired,
+  options: PropTypes.object.isRequired,
 };

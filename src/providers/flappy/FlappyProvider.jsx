@@ -21,7 +21,7 @@ const initialState = {
   rotate: 0,
   gameOver: false,
   birdImg: "bird-1",
-  page: "game",
+  page: "projects",
   posYMob: 100,
   stopAnimation: false,
   posXMob: -100,

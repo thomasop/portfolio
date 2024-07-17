@@ -9,6 +9,7 @@ import projectContext from "../../../../../providers/project/projectContext";
 import { array } from "prop-types";
 import { arrayOf } from "prop-types";
 import projectsContext from "../../../../../providers/projects/projectsContext";
+import Container from "../../../../projects/components/Container";
 
 const OCReactProjects = [
   {
@@ -16,10 +17,11 @@ const OCReactProjects = [
     img: "../assets/projects/OCReact/ohMyFood/main.png",
     arrayImg: [
       "../assets/projects/OCReact/ohMyFood/main.png",
-      "../assets/projects/OCReact/ohMyFood/desktop1.png",
-      "../assets/projects/OCReact/ohMyFood/desktop2.png",
+      "../assets/projects/OCReact/ohMyFood/load.png",
       "../assets/projects/OCReact/ohMyFood/mobile1.png",
       "../assets/projects/OCReact/ohMyFood/mobile2.png",
+      "../assets/projects/OCReact/ohMyFood/mobile3.png",
+      "../assets/projects/OCReact/ohMyFood/tablette.png",
     ],
     description: `Dans ce projet, j'ai travaillé sur le développement front-end
       d'une application de réservation de restaurants en ligne. J'ai
@@ -500,7 +502,7 @@ const speedX = 15;
 const speedY = 3; */
 const OCReact = () => {
   const { theme } = useContext(themeContext);
-  const refEl = useRef(null);
+  const refEl = useRef();
   let navigate = useNavigate();
   //const [resolution, setResolution] = useState(0);
   /* const [x, setX] = React.useState(0);
@@ -538,26 +540,31 @@ const OCReact = () => {
       window.removeEventListener("wheel", updateScrollProgress);
     };
   }, [projects.spacingX, projects.x, setProjects]);
+  console.log(resolution);
   useEffect(() => {
     if (resolution > 700) {
       setProjects((prev) => ({
         ...prev,
-        speedX: 15,
-        speedY: 3,
-        spacingX: 750,
-        spacingY: 150,
-      }));
-    } else if (resolution < 425) {
-      setProjects((prev) => ({
-        ...prev,
-        /* speedX: 2.5,
-        speedY: 0.5,
-        spacingX: 250,
-        spacingY: 50, */
         speedX: 10,
         speedY: 2,
         spacingX: 500,
         spacingY: 100,
+        /* speedX: 15,
+        speedY: 3,
+        spacingX: 750,
+        spacingY: 150, */
+      }));
+    } else if (resolution < 425) {
+      setProjects((prev) => ({
+        ...prev,
+        speedX: 2.5,
+        speedY: 0.5,
+        spacingX: 250,
+        spacingY: 50,
+        /* speedX: 10,
+        speedY: 2,
+        spacingX: 500,
+        spacingY: 100, */
       }));
     } else {
       setProjects((prev) => ({
@@ -588,94 +595,102 @@ const OCReact = () => {
     };
   }, []);
   useEffect(() => {
-    setProjects((prev) => ({
-      ...prev,
-      x:
+    if (refEl.current) {
+      setProjects((prev) => ({
+        ...prev,
+        x:
+          (document.documentElement.clientWidth - refEl.current.offsetWidth) /
+            2 -
+          0,
+        y:
+          (document.documentElement.clientHeight - refEl.current.offsetHeight) /
+          2,
+      }));
+      xRef.current =
         (document.documentElement.clientWidth - refEl.current.offsetWidth) / 2 -
-        0,
-      y:
+        0;
+      yRef.current =
         (document.documentElement.clientHeight - refEl.current.offsetHeight) /
-        2,
-    }));
-    /* setX(
-      (document.documentElement.clientWidth - refEl.current.offsetWidth) / 2 -
-        0
-    ); */
-    xRef.current =
-      (document.documentElement.clientWidth - refEl.current.offsetWidth) / 2 -
-      0;
-    /* setY(
-      (document.documentElement.clientHeight - refEl.current.offsetHeight) / 2
-    ); */
-    yRef.current =
-      (document.documentElement.clientHeight - refEl.current.offsetHeight) / 2;
+        2;
+    }
   }, [setProjects]);
   useEffect(() => {
     const updateScrollDown = () => {
-      if (
-        xRef.current + projects.spacingX * (OCReactProjects.length - 1) >
-        (document.documentElement.clientWidth - refEl.current.offsetWidth) / 2 -
-          0
-      ) {
-        setProjects((prev) => ({
-          ...prev,
-          x: xRef.current - projects.speedX,
-        }));
-        //setX(xRef.current - projects.speedX);
-        xRef.current = xRef.current - projects.speedX;
-      }
-      if (
-        yRef.current - projects.spacingY * (OCReactProjects.length - 1) <
-        (document.documentElement.clientHeight - refEl.current.offsetHeight) / 2
-      ) {
-        setProjects((prev) => ({
-          ...prev,
-          y: yRef.current + projects.speedY,
-        }));
-        //setY(yRef.current + projects.speedY);
-        yRef.current = yRef.current + projects.speedY;
+      if (refEl.current) {
+        if (
+          xRef.current + projects.spacingX * (OCReactProjects.length - 1) >
+          (document.documentElement.clientWidth - refEl.current.offsetWidth) /
+            2 -
+            0
+        ) {
+          setProjects((prev) => ({
+            ...prev,
+            x: xRef.current - projects.speedX,
+          }));
+          //setX(xRef.current - projects.speedX);
+          xRef.current = xRef.current - projects.speedX;
+        }
+        if (
+          yRef.current - projects.spacingY * (OCReactProjects.length - 1) <
+          (document.documentElement.clientHeight - refEl.current.offsetHeight) /
+            2
+        ) {
+          setProjects((prev) => ({
+            ...prev,
+            y: yRef.current + projects.speedY,
+          }));
+          //setY(yRef.current + projects.speedY);
+          yRef.current = yRef.current + projects.speedY;
+        }
       }
     };
     const updateScrollUp = () => {
-      if (
-        xRef.current <
-        (document.documentElement.clientWidth - refEl.current.offsetWidth) / 2 -
-          0
-      ) {
-        setProjects((prev) => ({
-          ...prev,
-          x: xRef.current + projects.speedX,
-        }));
-        //setX(xRef.current + projects.speedX);
-        xRef.current = xRef.current + projects.speedX;
-      }
-      if (
-        yRef.current >
-        (document.documentElement.clientHeight - refEl.current.offsetHeight) / 2
-      ) {
-        setProjects((prev) => ({
-          ...prev,
-          y: yRef.current - projects.speedY,
-        }));
-        //setY(yRef.current - projects.speedY);
-        yRef.current = yRef.current - projects.speedY;
+      if (refEl.current) {
+        if (
+          xRef.current <
+          (document.documentElement.clientWidth - refEl.current.offsetWidth) /
+            2 -
+            0
+        ) {
+          setProjects((prev) => ({
+            ...prev,
+            x: xRef.current + projects.speedX,
+          }));
+          //setX(xRef.current + projects.speedX);
+          xRef.current = xRef.current + projects.speedX;
+        }
+        if (
+          yRef.current >
+          (document.documentElement.clientHeight - refEl.current.offsetHeight) /
+            2
+        ) {
+          setProjects((prev) => ({
+            ...prev,
+            y: yRef.current - projects.speedY,
+          }));
+          //setY(yRef.current - projects.speedY);
+          yRef.current = yRef.current - projects.speedY;
+        }
       }
     };
 
     const handlerScroll = (e) => {
-      if (e.deltaY < 0) {
-        setValue((prev) => ({
-          ...prev,
-          stopAnimation: true,
-        }));
-        updateScrollUp();
-      } else {
-        setValue((prev) => ({
-          ...prev,
-          stopAnimation: true,
-        }));
+      if (refEl.current) {
+        if (e.deltaY < 0) {
+          setValue((prev) => ({
+            ...prev,
+            stopAnimation: true,
+          }));
+          updateScrollUp();
+        } else {
+          // scroll down pour faire defiler les projets vers la gauche
+          setValue((prev) => ({
+            ...prev,
+            stopAnimation: true,
+          }));
 
-        updateScrollDown();
+          updateScrollDown();
+        }
       }
     };
     window.addEventListener("wheel", handlerScroll);
@@ -688,9 +703,6 @@ const OCReact = () => {
     setProjects,
     setValue,
   ]);
-  /* useEffect(() => {
-    setResolution(document.body.clientWidth);
-  }, []); */
   useEffect(() => {
     if (value.stopAnimation) {
       window.setTimeout(() => {
@@ -709,10 +721,24 @@ const OCReact = () => {
         }`}
       >
         {OCReactProjects.map((p, index) => (
-          <div
+          <React.Fragment key={index}>
+            <>
+              <Container
+                ref={refEl}
+                p={p}
+                projects={projects}
+                index={index}
+                resolution={resolution}
+              />
+            </>
+
+            {/* <div
             key={index}
             ref={refEl}
             style={{
+              position: "absolute",
+              width: "1000px",
+              height: "1000px",
               transform: `perspective(90px) translate3d(${
                 index === 0
                   ? projects.x
@@ -725,25 +751,9 @@ const OCReact = () => {
             }}
             className={`${styles.container__card}`}
           >
-            <div
-              className={styles.container__card__div}
-              onClick={() => {
-                setValue((prev) => ({
-                  ...prev,
-                  page: p.title,
-                }));
-                setProject((prev) => ({
-                  ...prev,
-                  img: p.arrayImg,
-                  description: p.description,
-                  techs: p.techs,
-                  links: p.links,
-                }));
-                //navigate(p.link);
-              }}
-            ></div>
             <>
               <Scene
+                index={index}
                 resolution={resolution}
                 img={p.img}
                 x={
@@ -763,8 +773,22 @@ const OCReact = () => {
                     2
                 }
               />
+              <div
+                style={{
+                  position: "absolute",
+                  top: "50%", // Ajustez la position
+                  left: "50%", // Ajustez la position
+                  transform: "translate(-50%, -50%)",
+                  zIndex: 1,
+                }}
+              >
+                <button onClick={() => alert("Button Clicked!")}>
+                  Click Me!
+                </button>
+              </div>
             </>
-          </div>
+          </div> */}
+          </React.Fragment>
         ))}
       </div>
       {/*  <div
