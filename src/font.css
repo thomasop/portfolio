@@ -1,0 +1,14 @@
+@font-face {
+    font-family: Chloe;
+    src: url("./font/Chloe-Regular.otf");
+}
+
+@font-face {
+    font-family: NeueMontreal;
+    src: url("./font/NeueMontreal-Regular.otf");
+}
+
+@font-face {
+    font-family: Romi;
+    src: url("./font/Romie-Regular.ttf") format("truetype");
+}

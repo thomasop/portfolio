@@ -1,0 +1,184 @@
+.div {
+  position: relative;
+  margin-top: 30px;
+  &__div__img__password__btn:focus .div__label__value {
+    transform: translateY(-13px) scale(0.75);
+    transform-origin: top left;
+    color: red;
+  }
+  &:focus-within .div__label__light {
+    color: black;
+    font-family: "NeueMontreal";
+    position: absolute;
+    z-index: 0;
+    transform: translateY(-13px) scale(0.75);
+    transform-origin: top left;
+    transition: all 0.3s;
+  }
+  &:focus-within .div__label__dark {
+    color: white;
+    font-family: "NeueMontreal";
+    position: absolute;
+    z-index: 0;
+    transform: translateY(-13px) scale(0.75);
+    transform-origin: top left;
+    transition: all 0.3s;
+  }
+  &:focus-within .div__label__value__dark {
+    color: white;
+    font-family: "NeueMontreal";
+    position: absolute;
+    z-index: 0;
+    transform: translateY(-13px) scale(0.75);
+    transform-origin: top left;
+    transition: all 0.3s;
+  }
+
+  &:focus-within .div__label__value__light {
+    color: black;
+    font-family: "NeueMontreal";
+    position: absolute;
+    z-index: 0;
+    transform: translateY(-13px) scale(0.75);
+    transform-origin: top left;
+    transition: all 0.3s;
+  }
+  &__div__img__password__btn:focus .div__label__value {
+    transform: translateY(-13px) scale(0.75);
+    transform-origin: top left;
+    color: red;
+  }
+  &:not(:focus-within) .div__label__value {
+    color: black;
+    font-family: "NeueMontreal";
+    position: absolute;
+    z-index: 0;
+    transform: translateY(-13px) scale(0.75);
+    transform-origin: top left;
+    transition: all 0.3s;
+  }
+  &__label {
+    transform: translateY(-13px) scale(0.75);
+    transform-origin: top left;
+    color: black;
+    font-family: "NeueMontreal";
+    position: absolute;
+    z-index: 0;
+    transform: translateY(6px) scale(1);
+    transition: all 0.3s;
+    &__value {
+      &__light {
+        color: black;
+        font-family: "NeueMontreal";
+        position: absolute;
+        z-index: 0;
+        transform: translateY(-13px) scale(0.75);
+        transform-origin: top left;
+        transition: all 0.3s;
+      }
+      &__dark {
+        color: white;
+        font-family: "NeueMontreal";
+        position: absolute;
+        z-index: 0;
+        transform: translateY(-13px) scale(0.75);
+        transform-origin: top left;
+        transition: all 0.3s;
+      }
+    }
+    &__dark {
+      color: rgba(255, 255, 255, 0.41);
+    }
+    &__light {
+      color: rgb(68, 68, 68);
+    }
+  }
+  &__div {
+    position: relative;
+    width: 100%;
+    &__input {
+      position: relative;
+      z-index: 2;
+      background-color: transparent;
+      outline: none;
+      outline-width: 0;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font: inherit;
+      padding: 4px 0 5px;
+      box-sizing: content-box;
+      height: 1.4375em;
+      width: 100%;
+      transition: all 0.3s;
+
+      /* &::placeholder {
+        color: rgba(68, 68, 68, 0.27);
+        opacity: 0;
+      } */
+      &:focus::placeholder {
+        opacity: 1;
+      }
+
+      &__dark {
+        color: white;
+        border-bottom: 2px solid rgba(255, 255, 255, 0.62);
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.224);
+          opacity: 0;
+        }
+        &:hover:not(:focus) {
+          border-bottom: 2px solid white;
+        }
+        &:focus {
+          border-bottom: 2px solid white;
+        }
+      }
+      &__light {
+        border-bottom: 2px solid rgba(68, 68, 68, 0.27);
+        &::placeholder {
+          color: rgba(68, 68, 68, 0.27);
+          opacity: 0;
+        }
+        &:hover:not(:focus) {
+          border-bottom: 2px solid black;
+        }
+        &:focus {
+          border-bottom: 2px solid black;
+        }
+      }
+    }
+    &__img {
+      position: absolute;
+      z-index: 3;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      &__password {
+        transition: filter 0.3s;
+        cursor: pointer;
+        &:hover {
+          filter: drop-shadow(0px 0px 10px black);
+        }
+        &__btn {
+          background-color: transparent;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          padding: 0;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  &__error {
+    color: red;
+    font-family: "NeueMontreal";
+    font-size: 0.75rem;
+    line-height: 1.66;
+    letter-spacing: 0.03333em;
+    margin-top: 3px;
+    margin-bottom: -3px;
+  }
+}

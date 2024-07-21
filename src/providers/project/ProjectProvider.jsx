@@ -3,6 +3,7 @@ import projectContext from "./projectContext";
 import PropTypes from "prop-types";
 
 const InitialValue = {
+  title: "",
   img: [],
   description: "",
   techs: [],

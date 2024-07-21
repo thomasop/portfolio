@@ -12,6 +12,7 @@ const initialState = {
   spacingY: 0,
   percent: 0,
   current: 0,
+  isModalOpen: false,
 };
 
 const ProjectsProvider = ({ children }) => {
